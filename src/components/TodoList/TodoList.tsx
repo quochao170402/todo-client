@@ -1,5 +1,5 @@
 import TodoItem from "../TodoItem/TodoItem";
-
+import "./style.css";
 interface TodoListProps {
   Items: Todo[];
 }
@@ -7,7 +7,7 @@ interface TodoListProps {
 const TodoList = (props: TodoListProps) => {
   const items = props.Items;
   return (
-    <div>
+    <div className="todoList">
       {items.map((item) => (
         <TodoItem todo={item} key={item.id} />
       ))}

@@ -21,7 +21,6 @@ const TodoItem = (props: TodoItemProps) => {
     <div className="todoItem">
       <div className="todo" onClick={clickHandle}>
         <input type="checkbox" className="circle" checked={todoState} />
-
         <span className="content">{title}</span>
       </div>
       <img src={CrossIcon} alt="" className="remove" />
