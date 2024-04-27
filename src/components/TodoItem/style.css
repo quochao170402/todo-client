@@ -1,0 +1,70 @@
+.todoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  border-bottom: 1px solid hsl(233, 18%, 38%);
+  height: 50px;
+  width: 700px;
+  margin: 0 auto;
+}
+
+.todo {
+  display: flex;
+  width: 100%;
+
+  font-size: 1rem;
+  color: hsl(233, 11%, 84%);
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.todoItem:hover .remove {
+  opacity: 1;
+}
+
+.circle {
+  -webkit-appearance: none;
+
+  border: 1px solid hsl(234, 11%, 52%);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  position: absolute;
+  align-self: center;
+}
+
+.circle:checked {
+  background: url("../../assets/icon-check.svg"),
+    linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+
+.circle:checked ~ .content {
+  text-decoration: line-through;
+  color: hsl(234, 11%, 52%);
+}
+
+.remove {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin-right: 20px;
+  opacity: 0;
+}
+
+.content {
+  align-self: center;
+  width: 100%;
+  line-height: 100%;
+  border: none;
+  font-size: 1rem;
+  color: hsl(233, 11%, 84%);
+  cursor: pointer;
+  background-color: transparent;
+  margin-left: 40px;
+}
