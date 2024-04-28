@@ -1,26 +1,13 @@
+import { useContext } from "react";
 import Footer from "./Footer/Footer";
 import TodoForm from "./Form/TodoForm";
 import Header from "./Header/Header";
 import TodoList from "./TodoList/TodoList";
 import "./main.css";
+import { TodoContext } from "../contexts/Context";
 const MainComponent = () => {
-  const todoList: Todo[] = [
-    {
-      id: "1",
-      title: "Learn Typescript",
-      state: false,
-    },
-    {
-      id: "2",
-      title: "Learn English",
-      state: true,
-    },
-    {
-      id: "3",
-      title: "Learn React with Typescript",
-      state: false,
-    },
-  ];
+  const context = useContext(TodoContext);
+  console.log("🚀 ~ MainComponent ~ context:", context);
 
   return (
     <div className="container">
@@ -36,7 +23,7 @@ const MainComponent = () => {
             - Filter actions
             - Clear button
         */}
-      <TodoList Items={todoList} />
+      <TodoList />
       <Footer />
     </div>
   );
