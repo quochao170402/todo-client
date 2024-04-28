@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
-import "./style.css";
-import { TodoContext } from "../../contexts/Context";
 import { v4 as uuid } from "uuid";
+import "./style.css";
+import { TodoContext } from "../../contexts/TodoContext";
 
 const TodoForm = () => {
   const context = useContext(TodoContext);
+
   const [content, setContent] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,11 +14,14 @@ const TodoForm = () => {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && content.length > 0) {
-      context.push({
-        id: uuid(),
-        title: content,
-        state: false,
-      });
+      context.update(
+        {
+          id: uuid(),
+          title: content,
+          state: false,
+        },
+        true
+      );
       setContent("");
       console.log("🚀 ~ handleKeyDown ~ context;:", context);
     }

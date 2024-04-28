@@ -1,19 +1,19 @@
 import { useContext, useEffect } from "react";
-import { TodoContext } from "../../contexts/Context";
 import TodoItem from "../TodoItem/TodoItem";
 import "./style.css";
+import { TodoContext } from "../../contexts/TodoContext";
 
 const TodoList = () => {
-  const items = useContext(TodoContext);
-  console.log("🚀 ~ TodoList ~ items:", items);
+  const context = useContext(TodoContext);
+  console.log("🚀 ~ TodoList ~ items:", context);
   useEffect(() => {
     // Do something when context is updated
-    console.log("Context updated:", items);
-  }, [items]);
+    context.update;
+  }, [context.items]);
 
   return (
     <div className="todoList">
-      {items.map((item) => (
+      {context.items.map((item) => (
         <TodoItem todo={item} key={item.id} />
       ))}
     </div>
