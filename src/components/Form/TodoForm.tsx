@@ -23,7 +23,6 @@ const TodoForm = () => {
         true
       );
       setContent("");
-      console.log("🚀 ~ handleKeyDown ~ context;:", context);
     }
   };
 

@@ -5,7 +5,7 @@ import { TodoProvider } from "./contexts/TodoContext";
 function App() {
   return (
     <TodoProvider>
-      <MainComponent />;
+      <MainComponent />
     </TodoProvider>
   );
 }

@@ -9,14 +9,20 @@ interface TodoItemProps {
 
 const TodoItem = (props: TodoItemProps) => {
   const context = useContext(TodoContext);
-  const { title, state } = props.todo;
+  const { id, title, state } = props.todo;
 
   const [todoState, setTodoState] = useState(state);
-  console.log("🚀 ~ TodoItem ~ todoState:", todoState);
 
   const handleUpdateTodoState = () => {
     const currentState = !todoState;
+    console.log("🚀 ~ handleUpdateTodoState ~ currentState:", currentState);
+    console.log("🚀 ~ handleUpdateTodoState ~ todoState:", todoState);
     setTodoState(currentState);
+    const current = context.items.find((x) => x.id === id);
+    if (current) {
+      current.state = currentState;
+    }
+    console.log("🚀 ~ handleUpdateTodoState ~ context:", context);
   };
 
   const handleRemoveTodo = () => {
