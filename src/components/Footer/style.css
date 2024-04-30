@@ -15,15 +15,3 @@
   border-radius: 0 0 8px 8px;
   padding: 15px;
 }
-
-.todoButton {
-  border: none;
-  background: transparent;
-  height: 100%;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 18px;
-}
-
-.todoButton:focus {
-  color: hsl(220, 98%, 61%);
-}

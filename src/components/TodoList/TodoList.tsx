@@ -6,8 +6,7 @@ import "./style.css";
 const TodoList = () => {
   const context = useContext(TodoContext);
 
-  const items = context.filter.length == 0 ? context.items : context.filter;
-  console.log("🚀 ~ TodoList ~ items:", items);
+  const items = context.filter;
   return (
     <div className="todoList">
       {items.map((item) => (

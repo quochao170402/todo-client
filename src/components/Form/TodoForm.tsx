@@ -22,6 +22,7 @@ const TodoForm = () => {
         },
         true
       );
+
       setContent("");
     }
   };
