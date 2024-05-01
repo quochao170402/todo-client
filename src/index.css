@@ -9,3 +9,12 @@ body {
   font-family: "Times New Roman", Times, serif;
   font-size: 18px;
 }
+
+.light-mode {
+  color: #101212;
+  background-color: #ffffff;
+}
+.dark-mode {
+  color: #cccccc;
+  background-color: #101212;
+}
