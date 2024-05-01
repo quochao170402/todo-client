@@ -1,20 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { FilterType, TodoContext } from "../../contexts/TodoContext";
-import "./style.css";
 import TodoButton from "../TodoButton/TodoButton";
+import "./style.css";
 const Footer = () => {
   const context = useContext(TodoContext);
-  const [active, setActive] = useState(0);
   const quantity = context.filter.length;
-
-  const handleClearComplete = () => {
-    context.items = context.items.filter((x) => !x.state);
-  };
-
-  const handleClick = (index: number, type: FilterType) => {
-    setActive(index);
-    context.handleFilter(type);
-  };
 
   return (
     <div className="footer">
@@ -23,37 +13,24 @@ const Footer = () => {
         <TodoButton
           name={FilterType.All}
           isChecked={context.currentFilterType === FilterType.All}
-          handleClick={() => context.handleFilter(FilterType.All)}
+          handleClick={() =>
+            context.handleFilter(context.items, FilterType.All)
+          }
         />
         <TodoButton
           name={FilterType.Active}
           isChecked={context.currentFilterType === FilterType.Active}
-          handleClick={() => context.handleFilter(FilterType.Active)}
+          handleClick={() =>
+            context.handleFilter(context.items, FilterType.Active)
+          }
         />
         <TodoButton
           name={FilterType.Complete}
           isChecked={context.currentFilterType === FilterType.Complete}
-          handleClick={() => context.handleFilter(FilterType.Complete)}
+          handleClick={() =>
+            context.handleFilter(context.items, FilterType.Complete)
+          }
         />
-
-        {/* <button
-          onClick={() => context.handleFilter(FilterType.All)}
-          className="todoButton"
-        >
-          All
-        </button>
-        <button
-          onClick={() => context.handleFilter(FilterType.Active)}
-          className="todoButton"
-        >
-          Active
-        </button>
-        <button
-          onClick={() => context.handleFilter(FilterType.Complete)}
-          className="todoButton checked"
-        >
-          Completed
-        </button> */}
       </div>
       <button
         onClick={() => context.handleClearComplete()}

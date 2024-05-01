@@ -1,12 +1,15 @@
 import { useContext } from "react";
-import { TodoContext } from "../../contexts/TodoContext";
+import { FilterType, TodoContext } from "../../contexts/TodoContext";
 import TodoItem from "../TodoItem/TodoItem";
 import "./style.css";
 
 const TodoList = () => {
   const context = useContext(TodoContext);
 
-  const items = context.filter;
+  const items =
+    context.currentFilterType === FilterType.All
+      ? context.items
+      : context.filter;
   return (
     <div className="todoList">
       {items.map((item) => (

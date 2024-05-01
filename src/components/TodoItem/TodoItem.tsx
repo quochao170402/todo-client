@@ -15,14 +15,12 @@ const TodoItem = (props: TodoItemProps) => {
 
   const handleUpdateTodoState = () => {
     const currentState = !todoState;
-    console.log("🚀 ~ handleUpdateTodoState ~ currentState:", currentState);
-    console.log("🚀 ~ handleUpdateTodoState ~ todoState:", todoState);
     setTodoState(currentState);
     const current = context.items.find((x) => x.id === id);
     if (current) {
       current.state = currentState;
     }
-    console.log("🚀 ~ handleUpdateTodoState ~ context:", context);
+    context.handleFilter(context.items, context.currentFilterType);
   };
 
   const handleRemoveTodo = () => {
