@@ -1,29 +1,28 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { v4 as uuid } from "uuid";
 import "./style.css";
 import { TodoContext } from "../../contexts/TodoContext";
 
 const TodoForm = () => {
   const context = useContext(TodoContext);
-
-  const [content, setContent] = useState("");
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setContent(event.target.value);
-  };
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && content.length > 0) {
-      context.update(
-        {
-          id: uuid(),
-          title: content,
-          state: false,
-        },
-        true
-      );
+    if (inputRef.current) {
+      const value = inputRef.current.value;
+      if (event.key === "Enter" && value.length > 0) {
+        context.update(
+          {
+            id: uuid(),
+            title: value,
+            state: false,
+          },
+          true
+        );
 
-      setContent("");
+        inputRef.current.value = "";
+        inputRef.current.focus();
+      }
     }
   };
 
@@ -35,9 +34,8 @@ const TodoForm = () => {
         name=""
         id="newTodo"
         placeholder="Create new todo..."
-        value={content}
-        onChange={(event) => handleChange(event)}
         onKeyDown={(event) => handleKeyDown(event)}
+        ref={inputRef}
       />
     </div>
   );

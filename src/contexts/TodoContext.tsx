@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode, useContext } from "react";
+import { createContext, useState, ReactNode, useContext, useMemo } from "react";
 
 enum FilterType {
   All = "All",
@@ -64,17 +64,22 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     setItems((prev) => prev.filter((x) => !x.state));
     setFilter((prev) => prev.filter((x) => !x.state));
   };
-  return (
-    <TodoContext.Provider
-      value={{
+
+  const todoContextValue = useMemo(
+    () =>
+      ({
         items: items,
         filter: filter,
         currentFilterType,
         update: updateItems,
         handleFilter,
         handleClearComplete,
-      }}
-    >
+      } as TodoContextType),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [items, filter, currentFilterType]
+  );
+  return (
+    <TodoContext.Provider value={todoContextValue}>
       {children}
     </TodoContext.Provider>
   );
