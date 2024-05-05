@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode, useContext, useMemo } from "react";
+import { ReactNode, createContext, useMemo, useState } from "react";
 
 enum FilterType {
   All = "All",
@@ -32,6 +32,7 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [filter, setFilter] = useState<Todo[]>(items);
 
   const [currentFilterType, setCurrentFilterType] = useState(FilterType.All);
+
   const updateItems = (todo: Todo, isAdd: boolean) => {
     isAdd ? addItem(todo) : removeItem(todo);
   };
@@ -78,6 +79,7 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [items, filter, currentFilterType]
   );
+  
   return (
     <TodoContext.Provider value={todoContextValue}>
       {children}
@@ -85,4 +87,4 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
-export { TodoContext, TodoProvider, FilterType };
+export { FilterType, TodoContext, TodoProvider };

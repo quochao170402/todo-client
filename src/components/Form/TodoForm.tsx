@@ -1,7 +1,7 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { v4 as uuid } from "uuid";
-import "./style.css";
 import { TodoContext } from "../../contexts/TodoContext";
+import "./style.css";
 
 const TodoForm = () => {
   const context = useContext(TodoContext);
